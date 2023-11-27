@@ -1,4 +1,5 @@
 import json
+import openai
 
 f = open('secrets.json')
 
@@ -6,17 +7,18 @@ data = json.load(f)
 
 key = data["dalle"]
 
-
+import os
 import openai
 
-PROMPT = "An eco-friendly computer from the 90s in the style of vaporwave"
+openai.api_key = key
 
-openai.api_key = key 
+description = "A little girl standing in a forest in a red hood"
+style = "a rennisance painting"
 
 response = openai.Image.create(
-    prompt=PROMPT,
-    n=1,
-    size="256x256",
+    prompt = description + " in the style of " + style,
+    n = 1,
+    size = "512x512"
 )
-
-print(response["data"][0]["url"])
+ 
+print(response)
