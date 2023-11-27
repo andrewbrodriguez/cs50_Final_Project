@@ -7,10 +7,13 @@ data = json.load(f)
 
 key = data["gpt"]
 
+file = open("sample.txt", "r")
+content = file.read()
+
 
 openai.api_key = key
 messages = [ {"role": "system", "content": 
-			"You are a intelligent assistant."} ] 
+			"Describe the sceneary for the following story, such that the story could be painted, in less than 2 sentences. The story goes as follows: " + content} ] 
 while True: 
 	message = input("User : ") 
 	if message: 
