@@ -1,28 +1,30 @@
 import json
 import openai
 
-f = open('secrets.json')
+def create_prompt():
 
-data = json.load(f)
+	f = open('secrets.json')
 
-key = data["gpt"]
+	data = json.load(f)
 
-file = open("sample.txt", "r")
-content = file.read()
+	key = data["gpt"]
+
+	file = open("sample.txt", "r")
+	content = file.read()
 
 
-openai.api_key = key
-messages = [ {"role": "system", "content": 
-			"Describe the sceneary for the following story, such that the story could be painted, in less than 2 sentences. The story goes as follows: " + content} ] 
-while True: 
-	message = input("User : ") 
-	if message: 
-		messages.append( 
-			{"role": "user", "content": message}, 
-		) 
-		chat = openai.ChatCompletion.create( 
-			model="gpt-3.5-turbo", messages=messages 
-		) 
-	reply = chat.choices[0].message.content 
-	print(f"ChatGPT: {reply}") 
-	messages.append({"role": "assistant", "content": reply}) 
+	openai.api_key = key
+	messages = [ {"role": "system", "content": 
+				"Describe the sceneary for the following story, such that the story could be painted, in less than 2 sentences. The story goes as follows: " + content} ] 
+	while True: 
+		message = input("User : ") 
+		if message: 
+			messages.append( 
+				{"role": "user", "content": message}, 
+			) 
+			chat = openai.ChatCompletion.create( 
+				model="gpt-3.5-turbo", messages=messages 
+			) 
+		reply = chat.choices[0].message.content 
+		print(f"ChatGPT: {reply}") 
+		messages.append({"role": "assistant", "content": reply}) 
