@@ -111,6 +111,7 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
+
         # Ensure username was submitted and doesn't exist already
         if not username:
             return apology("must provide username")
