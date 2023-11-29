@@ -16,7 +16,7 @@ def create_image(prompt):
     prompt = prompt[1:]
 
     description = prompt
-    style = "a renaissance painting"
+    style = "a high fantasy painting"
 
     response = openai.Image.create(
         prompt=description + " in the style of " + style,

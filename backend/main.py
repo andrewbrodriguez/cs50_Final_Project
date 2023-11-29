@@ -22,10 +22,22 @@ def ingest(text):
 
 ingested = ingest(content)
 
+
 prompts = create_prompts(ingested)
+
+text_prompts = ""
+
+for prompt in prompts:
+    text_prompts += prompt 
+    text_prompts += "\n\n"
+
+print(prompts)
+
+with open('prompts.txt', 'w') as f:
+    f.write(text_prompts)
+
 
 for prompt in prompts:
     create_image(prompt)
 
-
-#print(create_image())
+# #print(create_image())

@@ -13,7 +13,7 @@ def create_prompts(blocks):
 	prompts = []
 
 	messages = [ {"role": "system", "content": 
-				"Describe the sceneary for the following paragraph, such that the story could be painted, in less than 2 sentences. Here is the paragraph: "} ] 
+				"Your goal is to describe the following paragraph such that a painter can make an image in its likness. You must use descriptive words. Make sure that the wording of the prompt is not violent, or rude, or sinister. The wording of the prompt must adhere to the OpenAI Dalle2 input prompt regulations. Your response must be less than 1 sentences in length. Here is the paragraph: "} ] 
 
 	while True: 
 
