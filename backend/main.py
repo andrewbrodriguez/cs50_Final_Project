@@ -42,4 +42,3 @@ def run(story):
     for prompt in prompts:
         create_image(prompt)
 
-run(content)
