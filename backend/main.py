@@ -43,5 +43,3 @@ def run(story):
         create_image(prompt)
 
 run(content)
-
-# #print(create_image())
