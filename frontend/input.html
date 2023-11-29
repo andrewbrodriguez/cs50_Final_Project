@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Input
+{% endblock %}
+
+{% block main %}
+    <form action ="/input" method="post">
+        <div style="margin-bottom: 20px;">
+            <label for="input">Short Story Here</label>
+            <input type="text" id="short story" name="input" min="1">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <button class="btn" type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

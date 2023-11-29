@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block main %}
+   <div style="margin-bottom: 20px; float: left;">
+        {% for image in images%}
+        <img src="insert_image" alt="Generated Image Here">
+        {% endfor %}
+   </div>
+   <div>
+        {% for block in text %}
+        <p>block</p>
+        {% endfor %}
+   </div>
+{% endblock %}
