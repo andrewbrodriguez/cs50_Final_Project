@@ -20,24 +20,28 @@ def ingest(text):
             counter = 0
     return blocks
 
-ingested = ingest(content)
+
+def run(story):
+    ingested = ingest(story)
 
 
-prompts = create_prompts(ingested)
+    prompts = create_prompts(ingested)
 
-text_prompts = ""
+    text_prompts = ""
 
-for prompt in prompts:
-    text_prompts += prompt 
-    text_prompts += "\n\n"
+    for prompt in prompts:
+        text_prompts += prompt 
+        text_prompts += "\n\n"
 
-print(prompts)
+    print(prompts)
 
-with open('prompts.txt', 'w') as f:
-    f.write(text_prompts)
+    with open('prompts.txt', 'w') as f:
+        f.write(text_prompts)
 
 
-for prompt in prompts:
-    create_image(prompt)
+    for prompt in prompts:
+        create_image(prompt)
+
+run(content)
 
 # #print(create_image())
