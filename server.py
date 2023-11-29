@@ -1,10 +1,13 @@
-import os
 import re
 import json
+import sys
 
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+from helpers import apology, login_required
+sys.path.insert(0, '/Users/maddiestearns/Desktop/cs50_Final_Project/backend/main.py')
+from main import ingest
 
 # Configure server
 server = Flask(__name__)
@@ -71,15 +74,16 @@ def login():
             return apology("you must provide your password")
 
         # Query json for username and filter for username
-        raw_data = json.loads(json_data)
+        with open('users.json', 'r') as f:
+            raw_data = json.load(f)
         data = [entry for entry in raw_data if entry.get('username') == request.form.get("username")]
 
         # Ensure username exists and password is correct
-        if len(data) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+        if len(data) != 1 or not check_password_hash(data[0]["hash"], request.form.get("password")):
             return apology("invalid login credentials", 403)
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = data[0]["id"]
 
         # Redirect user to home page
         return redirect("/")
@@ -113,7 +117,8 @@ def register():
             return apology("must provide username")
 
         # Query json for username and filter for username
-        raw_data = json.loads(json_data)
+        with open('users.json', 'r') as f:
+            raw_data = json.load(f)
         data = [entry for entry in raw_data if entry.get('username') == request.form.get("username")]
 
         if len(data) == 1:
@@ -134,5 +139,7 @@ def register():
     else:
         return render_template("register.html")
 
-    session["user_id"] = [entry for entry in json.loads(json_data) if entry.get('username') == request.form.get("username")][0]["id"]
+    with open('users.json', 'r') as f:
+        raw_data = json.load(f)
+    session["user_id"] = [entry for entry in raw_data if entry.get('username') == request.form.get("username")][0]["id"]
     return redirect("/")
