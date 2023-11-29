@@ -6,7 +6,7 @@ from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from backend.helpers import apology, login_required
-from main import ingest
+from main import run
 
 # Configure server
 server = Flask(__name__)
@@ -38,7 +38,7 @@ def input():
 
     if request.method == "POST":
         # Send story to backend
-        success = ingest(request.form.get("story"))
+        success = run(request.form.get("story"))
 
         if success is None:
             return apology("you must enter a story!")
