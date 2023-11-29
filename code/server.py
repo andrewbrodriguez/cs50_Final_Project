@@ -1,7 +1,7 @@
 import re
-import json
 import sys
 
+from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -10,6 +10,9 @@ from main import run
 
 # Configure server
 server = Flask(__name__)
+
+# Configure CS50 Library to use SQLite database
+db = SQL("sqlite:///code.db")
 
 # Configure session to use filesystem
 server.config["SESSION_PERMANENT"] = False
@@ -72,17 +75,15 @@ def login():
         elif not request.form.get("password"):
             return apology("you must provide your password")
 
-        # Query json for username and filter for username
-        with open('users.json', 'r') as f:
-            raw_data = json.load(f)
-        data = [entry for entry in raw_data if entry.get('username') == request.form.get("username")]
+        # Query database for username
+        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
 
         # Ensure username exists and password is correct
-        if len(data) != 1 or not check_password_hash(data[0]["hash"], request.form.get("password")):
+        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             return apology("invalid login credentials", 403)
 
         # Remember which user has logged in
-        session["user_id"] = data[0]["id"]
+        session["user_id"] = rows[0]["id"]
 
         # Redirect user to home page
         return redirect("/")
@@ -116,30 +117,22 @@ def register():
         if not username:
             return apology("must provide username")
 
-        # Query json for username and filter for username
-        with open('users.json', 'r') as f:
-            raw_data = json.load(f)
-        data = [entry for entry in raw_data if entry.get('username') == request.form.get("username")]
-
-        if len(data) == 1:
+        rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+        if len(rows) == 1:
             return apology("this username already exists")
-
+        
+        # Ensure password has one number and one special character
         if not re.search("[0-9]", password) or not re.search("[!@#$%^&*()]", password):
             return apology("password must have at least one number and one special character")
 
         if password != confirmation:
             return apology("password and confirmation must match")
 
-        # Insert the new user into users.json
-        new_user = {username: password}
-
-        with open('users.json', 'w') as f:
-            json.dump(new_user, f)
+        # Insert the new user into the database
+        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, generate_password_hash(password),)
 
     else:
         return render_template("register.html")
 
-    with open('users.json', 'r') as f:
-        raw_data = json.load(f)
-    session["user_id"] = [entry for entry in raw_data if entry.get('username') == request.form.get("username")][0]["id"]
+    session["user_id"] = db.execute("SELECT id FROM users WHERE username = ?", username)[0]["id"]
     return redirect("/")
