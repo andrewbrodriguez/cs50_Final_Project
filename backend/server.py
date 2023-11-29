@@ -130,7 +130,7 @@ def register():
             return apology("password and confirmation must match")
 
         # Insert the new user into users.json
-        new_user = {"username": username, "password": password}
+        new_user = {username: password}
 
         with open('users.json', 'w') as f:
             json.dump(new_user, f)
