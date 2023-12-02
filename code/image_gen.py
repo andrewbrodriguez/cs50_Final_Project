@@ -29,9 +29,10 @@ def create_image(prompt):
         os.makedirs(output_directory)
 
     # Download and save the images
-    data = response['data']
-    link = data[0]
-    link = link["url"]
+    # data = response['data']
+    # link = data[0]
+    # link = link["url"]
+    link = response.data[0].url
     image_data = requests.get(link).content
     image_path = os.path.join(output_directory, f'image_{promptNumber}.png')
 
