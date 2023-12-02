@@ -39,9 +39,11 @@ def index():
 def input():
     """Input story text to be converted"""
 
+    print("IN INPUT")
+
     if request.method == "POST":
         # Send story to backend
-        story = str(request.form.get("story"))
+        story = str(request.form.get("input"))
         success = run(story)
 
         if success is None:

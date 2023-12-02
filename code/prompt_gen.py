@@ -1,6 +1,8 @@
 import json
 import openai
 
+from helpers import apology
+
 def create_prompts(blocks):
 
 	prompt_count = 0
@@ -15,7 +17,7 @@ def create_prompts(blocks):
 	messages = [ {"role": "system", "content": 
 				"Your goal is to describe the following paragraph such that a painter can make an image in its likness. You must use descriptive words. Make sure that the wording of the prompt is not violent, or rude, or sinister. The wording of the prompt must adhere to the OpenAI Dalle2 input prompt regulations. Your response must be less than 1 sentences in length. Here is the paragraph: "} ] 
 
-	while True: 
+	while len(blocks) > 0: 
 
 		messages.append( 
 			{"role": "user", "content": blocks[0]}, 
