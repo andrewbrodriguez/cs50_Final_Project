@@ -1,5 +1,7 @@
 import json
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 
 from helpers import apology
 
@@ -10,7 +12,7 @@ def create_prompts(blocks):
 	f = open('secrets.json')
 	data = json.load(f)
 	key = data["gpt"]
-	openai.api_key = key
+	
 
 	prompts = []
 
@@ -22,9 +24,7 @@ def create_prompts(blocks):
 		messages.append( 
 			{"role": "user", "content": blocks[0]}, 
 		) 
-		chat = openai.ChatCompletion.create( 
-			model="gpt-3.5-turbo", messages=messages 
-		) 
+		chat = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages) 
 		reply = chat.choices[0].message.content 
 		prompt_count+=1
 		prompts.append(str(prompt_count) + reply)
