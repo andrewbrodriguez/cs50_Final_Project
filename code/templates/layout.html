@@ -15,18 +15,20 @@
         <title>Our AI Picture Book</title>
     </head>
     <body>
+        <!-- This top part defines our navbar -->
         <nav class="bg-light border navbar navbar-expand-md navbar-light">
             <div class="container-fluid">
-                <!-- Fix this title thing ltr-->
-                 <span class="red">Our AI Picturebook</span></a>
+                <!-- have title here -->
+                 <a><span class="navbar-brand">Our AI Picturebook</span></a>
                 <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- If we are loggged in, have options for input or logging out. Else have register or log in -->
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav ms-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/input">Index</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/input">Input</a></li>
                         </ul>
                     {% else %}
                         <ul class="navbar-nav ms-auto mt-2">

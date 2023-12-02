@@ -1,22 +1,20 @@
-nav .navbar-brand
+.navbar-brand
 {
     font-size: xx-large;
     color: crimson;
-}
-navbar
-{
-    color: crimson;
+    font-weight: bold;
 }
 .btn
 {
-    background-color: lavender;
-    border-radius: 20 px;
+    text-decoration-color: gainsboro;
+    background-color: navy;
 }
 .btn:hover
 {
+    text-decoration-color: darkgoldenrod;
     background-color: chartreuse;
 }
-div
+.page
 {
     margin-bottom: 20px;
     line-height: 1.5;
@@ -27,4 +25,10 @@ div
 {
     width: 300px;
     height: 600px;
+}
+.img_container img 
+{
+    width: 200px; 
+    height: 200px; 
+    padding: 20px; 
 }

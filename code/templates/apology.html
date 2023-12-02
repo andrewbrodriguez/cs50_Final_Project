@@ -5,12 +5,14 @@
 {% endblock %}
 
 {% block main %}
-    <div>
+    <div class="page">
         <img src="whistle.jpeg" alt="Error Image">
     </div>
-    <div style="color: plum; font-size: 28;">
+    <div class="page" style="color: purple; font-size: 28;">
         {% for message in messages %}
-            {{message}}
+            {{ message }}
+        {% else %}
+            You have encountered an error
         {% endfor %}
     </div>
 {% endblock %}
