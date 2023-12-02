@@ -41,7 +41,8 @@ def input():
 
     if request.method == "POST":
         # Send story to backend
-        success = run(request.form.get("story"))
+        story = str(request.form.get("story"))
+        success = run(story)
 
         if success is None:
             return apology("you must enter a story!")

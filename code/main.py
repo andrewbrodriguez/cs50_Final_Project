@@ -24,7 +24,6 @@ def ingest(text):
 def run(story):
     ingested = ingest(story)
 
-
     prompts = create_prompts(ingested)
 
     text_prompts = ""
