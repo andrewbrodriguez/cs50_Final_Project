@@ -8,13 +8,13 @@ def ingest(text):
     for c in text:
         block += c
         if c == "." or c == "!" or c == "?":
-            counter += 1
-        if counter == 10:
+        #     counter += 1
+        # if counter == 10:
             print("bonk")
             print(block)
             blocks.append(block)
             block = ""
-            counter = 0
+            # counter = 0
     return blocks
 
 
@@ -27,6 +27,7 @@ def run(story):
 
     text_prompts = ""
 
+    print(prompts)
     print("RIGHT HERE")
     for prompt in prompts:
         print("BEANNNNNN")
