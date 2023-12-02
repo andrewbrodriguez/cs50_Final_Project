@@ -1,6 +1,8 @@
 import json
 import os
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 import requests
 
 def create_image(prompt):
@@ -9,7 +11,7 @@ def create_image(prompt):
         data = json.load(f)
 
     key = data["dalle"]
-    openai.api_key = key
+    
     output_directory = "images"
 
     promptNumber = prompt[0]
@@ -18,11 +20,9 @@ def create_image(prompt):
     description = prompt
     style = "a high fantasy painting"
 
-    response = openai.Image.create(
-        prompt=description + " in the style of " + style,
-        n=1,
-        size="512x512"
-    )
+    response = client.images.generate(prompt=description + " in the style of " + style,
+    n=1,
+    size="512x512")
 
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_directory):
