@@ -32,3 +32,13 @@
     height: 200px; 
     padding: 20px; 
 }
+.result
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.padded-image
+{
+    padding-right: 20px;
+}
