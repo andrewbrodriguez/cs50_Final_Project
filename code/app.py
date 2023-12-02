@@ -1,5 +1,6 @@
 import re
 import sys
+import os
 
 from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
@@ -57,7 +58,17 @@ def input():
 def results():
     """Show images that result from story input"""
 
-    return render_template("results.html")
+    image_folder = '/Users/maddiestearns/Desktop/cs50_Final_Project/code/images'
+    images = []
+
+    for filename in os.listdir(image_folder):
+        full_path = os.path.join(image_folder, filename)
+        print(f"Processing: {full_path}")
+        images.append(filename)
+
+    data = zip(images)
+
+    return render_template("results.html", data=data)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
