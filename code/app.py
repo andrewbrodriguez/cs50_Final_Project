@@ -8,19 +8,19 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
 from main import run
 
-# Configure server
-server = Flask(__name__)
+# Configure app
+app = Flask(__name__)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///code.db")
 
 # Configure session to use filesystem
-server.config["SESSION_PERMANENT"] = False
-server.config["SESSION_TYPE"] = "filesystem"
-Session(server)
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 # Modifies the HTTP response headers to prevent caching
-@server.after_request
+@app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -28,13 +28,13 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@server.route("/")
+@app.route("/")
 def index():
     """Show home page"""
 
     return render_template("index.html")
 
-@server.route("/input", methods=["GET", "POST"])
+@app.route("/input", methods=["GET", "POST"])
 @login_required
 def input():
     """Input story text to be converted"""
@@ -52,14 +52,14 @@ def input():
 
     return render_template("input.html")
 
-@server.route("/results")
+@app.route("/results")
 @login_required
 def results():
     """Show images that result from story input"""
 
     return render_template("results.html")
 
-@server.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
 
@@ -94,7 +94,7 @@ def login():
         return render_template("login.html")
 
 
-@server.route("/logout")
+@app.route("/logout")
 def logout():
     """Log user out"""
 
@@ -104,7 +104,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-@server.route("/register", methods=["GET", "POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
 
@@ -130,7 +130,8 @@ def register():
             return apology("password and confirmation must match")
 
         # Insert the new user into the database
-        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, generate_password_hash(password),)
+        hsh = generate_password_hash(password)
+        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hsh)
 
     else:
         return render_template("register.html")
