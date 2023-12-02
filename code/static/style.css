@@ -3,6 +3,10 @@ nav .navbar-brand
     font-size: xx-large;
     color: crimson;
 }
+navbar
+{
+    color: crimson;
+}
 .btn
 {
     background-color: lavender;
