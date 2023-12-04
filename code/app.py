@@ -128,10 +128,10 @@ def register():
         # Ensure username was submitted and doesn't exist already
         if not username:
             return apology("must provide username")
-
-        rows = db.execute("SELECT * FROM users WHERE username = ?", username)
-        if len(rows) == 1:
-            return apology("this username already exists")
+        
+        # rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+        # if len(rows) == 1:
+        #     return apology("this username already exists")
         
         # Ensure password has one number and one special character
         if not re.search("[0-9]", password) or not re.search("[!@#$%^&*()]", password):
@@ -142,7 +142,11 @@ def register():
 
         # Insert the new user into the database
         hsh = generate_password_hash(password)
-        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hsh)
+
+        result = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)", username=username, hash=hsh)
+
+        if result is None:
+            return apology("This username already exists")
 
     else:
         return render_template("register.html")
