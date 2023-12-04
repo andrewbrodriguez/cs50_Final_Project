@@ -1,6 +1,6 @@
 import re
-import sys
 import os
+import datetime
 
 from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
@@ -13,7 +13,7 @@ from main import run
 app = Flask(__name__)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///code.db")
+db = SQL("sqlite:///users.db")
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -47,6 +47,9 @@ def input():
 
         if success is None:
             return render_template("apology.html", message="You must enter a story!")
+        
+        # If story is entered, increment number of runs for stats page
+        db.execute("UPDATE users SET num_runs = num_runs + 1 WHERE id = :user_id", user_id=session["user_id"])
         
         # Redirect user to results page
         return redirect("/results")
@@ -139,8 +142,10 @@ def register():
         # Insert the new user into the database
         hsh = generate_password_hash(password)
 
+        # Save user data, including time registered
         try:
             db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)", username=username, hash=hsh)
+
         except ValueError:
             return render_template("apology.html", message="This username already exists!")
 
