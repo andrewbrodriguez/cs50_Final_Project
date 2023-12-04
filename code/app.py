@@ -6,7 +6,7 @@ from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import apology, login_required
+from helpers import login_required
 from main import run
 
 # Configure app
@@ -46,7 +46,7 @@ def input():
         success = run(story)
 
         if success is None:
-            return apology("you must enter a story!")
+            return render_template("apology.html", message="You must enter a story!")
         
         # Redirect user to results page
         return redirect("/results")
@@ -81,18 +81,18 @@ def login():
     if request.method == "POST":
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("you must provide your username")
+            return render_template("apology.html", message="You must provide your username!")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("you must provide your password")
+            return render_template("apology.html", message="You must provide your password!")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid login credentials", 403)
+            return render_template("apology.html", message="Invalid login credentials!")
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -127,26 +127,22 @@ def register():
 
         # Ensure username was submitted and doesn't exist already
         if not username:
-            return apology("must provide username")
-        
-        # rows = db.execute("SELECT * FROM users WHERE username = ?", username)
-        # if len(rows) == 1:
-        #     return apology("this username already exists")
-        
+            return render_template("apology.html", message="You must provide your username!")
+            
         # Ensure password has one number and one special character
         if not re.search("[0-9]", password) or not re.search("[!@#$%^&*()]", password):
-            return apology("password must have at least one number and one special character")
+            return render_template("apology.html", message="Your password must have at least one number and one special character!")
 
         if password != confirmation:
-            return apology("password and confirmation must match")
+            return render_template("apology.html", message="Password and confirmation must match!")
 
         # Insert the new user into the database
         hsh = generate_password_hash(password)
 
-        result = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)", username=username, hash=hsh)
-
-        if result is None:
-            return apology("This username already exists")
+        try:
+            db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)", username=username, hash=hsh)
+        except ValueError:
+            return render_template("apology.html", message="This username already exists!")
 
     else:
         return render_template("register.html")
