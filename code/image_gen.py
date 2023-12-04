@@ -89,4 +89,4 @@ def create_img(prompt):
         return {"error": str(e)}
 
 
-print(create_img("someone killing someone else, with a lot of blood"))
+print(create_img("a tree"))

@@ -1,5 +1,5 @@
-from image_gen import create_image
-from prompt_gen import create_prompts
+from image_gen import create_img
+from prompt_gen import make_prompts
 
 def ingest(text):
     counter = 0
@@ -20,7 +20,7 @@ def ingest(text):
 def run(story):
     ingested = ingest(story)
 
-    prompts = create_prompts(ingested)
+    prompts = make_prompts(ingested)
 
     text_prompts = ""
 
@@ -33,4 +33,4 @@ def run(story):
 
 
     for prompt in prompts:
-        create_image(prompt)
+        create_img(prompt)
