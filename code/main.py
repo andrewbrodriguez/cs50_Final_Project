@@ -12,7 +12,7 @@ def ingest(text):
             sentences +=1
 
 
-    block_size = int(sentences/6)
+    block_size = int(sentences/10)
 
 
     counter = 0

@@ -43,8 +43,8 @@ def input():
     if request.method == "POST":
         # Send story to backend
         story = str(request.form.get("input"))
-        if len(story) < 100 or len(story)>2600:
-            return render_template("apology.html", message="Please enter a story over 100 characters in length, and under 2600 characters in length!")
+        if len(story) < 100 or len(story)>5000:
+            return render_template("apology.html", message="Please enter a story over 100 characters in length, and under 5000 characters in length!")
         
         run(story)
         
