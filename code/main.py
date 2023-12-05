@@ -4,13 +4,20 @@ import json
 
 def ingest(text):
     counter = 0
+    for c in text:
+        if c == "." or c == "!" or c == "?":
+            counter += 1
+    
+    block_size = int(counter/6)
+
+    counter = 0
     block = ""
     blocks = []
     for c in text:
         block += c
         if c == "." or c == "!" or c == "?":
             counter += 1
-        if counter == 3:
+        if counter > block_size:
             blocks.append(block)
             block = ""
             counter = 0
