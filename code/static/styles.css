@@ -21,15 +21,8 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: medium;
 }
-#input
-{
-    width: 300px;
-    height: 600px;
-}
 .img_container img 
-{
-    width: 100px; 
-    height: 100px; 
+{ 
     padding: 20px; 
 }
 .padded-image
@@ -44,6 +37,7 @@
 {
     width: 100%;
     background-color: lightgrey;
+    display: none;
 }
 #progress-bar
 {
