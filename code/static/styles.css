@@ -6,12 +6,12 @@
 }
 .btn
 {
-    text-decoration-color: gainsboro;
+    color: gainsboro;
     background-color: navy;
 }
 .btn:hover
 {
-    text-decoration-color: darkgoldenrod;
+    color: darkgoldenrod;
     background-color: lavender;
 }
 .page
@@ -29,20 +29,7 @@
 {
     padding-right: 20px;
 }
-#rick
+.loading
 {
     display: none;
-}
-#progress-container
-{
-    width: 100%;
-    background-color: lightgrey;
-    display: none;
-}
-#progress-bar
-{
-    width: 0%;
-    height: 30px;
-    background-color: chartreuse;
-
 }
