@@ -44,11 +44,10 @@ def input():
     if request.method == "POST":
         # Send story to backend
         story = str(request.form.get("input"))
-        success = run(story)
-
-
         if len(story) < 100:
-            return render_template("apology.html", message="You must provide your username!")
+            return render_template("apology.html", message="Please enter a story over 4 sentneces in length!")
+        
+        success = run(story)
         
         # Redirect user to results page
         return redirect("/results")
@@ -65,6 +64,7 @@ def results():
         for file_name in files:
             file_paths.append(file_name)
     file_paths = file_paths[2]
+    file_paths.sort(key = str)
 
     with open('blocks.json', 'r') as json_file:
         blocks = json.load(json_file)

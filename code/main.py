@@ -11,7 +11,6 @@ def ingest(text):
         if c == "." or c == "!" or c == "?":
             counter += 1
         if counter == 3:
-            print(block)
             blocks.append(block)
             block = ""
             counter = 0
