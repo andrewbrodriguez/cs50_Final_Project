@@ -1,7 +1,7 @@
 .navbar-brand
 {
     font-size: xx-large;
-    color: crimson;
+    color: navy;
     font-weight: bold;
 }
 .btn
@@ -32,4 +32,16 @@
 .loading img
 {
     width: 50%;
+}
+
+table {
+    background-color: transparent;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    vertical-align: middle;
 }
