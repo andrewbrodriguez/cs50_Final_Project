@@ -1,12 +1,13 @@
 import re
 import os
 import datetime
+import json
 
 from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import login_required
+from helpers import login_required, apology
 from main import run
 
 # Configure app
@@ -45,11 +46,9 @@ def input():
         story = str(request.form.get("input"))
         success = run(story)
 
-        if success is None:
-            return render_template("apology.html", message="You must enter a story!")
-        
-        # If story is entered, increment number of runs for stats page
-        db.execute("UPDATE users SET num_runs = num_runs + 1 WHERE id = :user_id", user_id=session["user_id"])
+
+        if len(story) < 100:
+            return apology("You must enter a story! It must be over 100 characters in length!")
         
         # Redirect user to results page
         return redirect("/results")
@@ -61,15 +60,24 @@ def input():
 def results():
     """Show images that result from story input"""
 
-    image_folder = '/Users/maddiestearns/Desktop/cs50_Final_Project/code/images'
-    images = []
+    file_paths = []
+    for files in os.walk("static/images"):
+        for file_name in files:
+            file_paths.append(file_name)
+    file_paths = file_paths[2]
 
-    for filename in os.listdir(image_folder):
-        full_path = os.path.join(image_folder, filename)
-        print(f"Processing: {full_path}")
-        images.append(filename)
+    with open('blocks.json', 'r') as json_file:
+        blocks = json.load(json_file)
 
-    data = zip(images)
+
+    data = []
+    counter = 0
+    for file in file_paths:
+        image_text_pairing = ("/static/images/" + file, blocks[counter])
+        data.append(image_text_pairing)
+        counter +=1
+
+
 
     return render_template("results.html", data=data)
 
