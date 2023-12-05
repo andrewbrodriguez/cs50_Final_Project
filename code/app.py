@@ -44,9 +44,9 @@ def input():
         # Send story to backend
         story = str(request.form.get("input"))
         if len(story) < 100:
-            return render_template("apology.html", message="Please enter a story over 4 sentneces in length!")
+            return render_template("apology.html", message="Please enter a story over 4 sentences in length!")
         
-        success = run(story)
+        db.execute("UPDATE users SET num_runs = num_runs + 1 WHERE id = :user_id", user_id=session["user_id"])
         
         # Redirect user to results page
         return redirect("/results")
@@ -166,5 +166,5 @@ def register():
 def stats():
     """Display all users stats"""
 
-    rows = db.execute("SELECT username, time, num_rows FROM users ORDER BY num_rows DESC")
+    rows = db.execute("SELECT username, time, num_runs FROM users ORDER BY num_runs DESC")
     return render_template("stats.html", rows=rows,)
