@@ -1,26 +1,28 @@
 from image_gen import create_img
 from prompt_gen import make_prompts
 import json
+from math import floor
 
 def ingest(text):
-    counter = 0
-    for c in text:
-        if c == "." or c == "!" or c == "?":
-            counter += 1
-    
-    block_size = int(counter/6)
+
+    length = len(text)
+
+    block_size = int(length/6)
+
 
     counter = 0
     block = ""
     blocks = []
     for c in text:
         block += c
-        if c == "." or c == "!" or c == "?":
-            counter += 1
+        counter += 1
         if counter > block_size:
             blocks.append(block)
             block = ""
             counter = 0
+
+    blocks.append(block)
+
 
     json_filename = 'blocks.json'
     
