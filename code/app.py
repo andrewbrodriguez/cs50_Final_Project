@@ -46,6 +46,8 @@ def input():
         if len(story) < 100:
             return render_template("apology.html", message="Please enter a story over 4 sentences in length!")
         
+        run(story)
+        
         db.execute("UPDATE users SET num_runs = num_runs + 1 WHERE id = :user_id", user_id=session["user_id"])
         
         # Redirect user to results page
