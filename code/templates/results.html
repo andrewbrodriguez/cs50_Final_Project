@@ -6,7 +6,7 @@
 
 {% block main %}
      {% for image, text in data %}
-        <div style="display: flex; justify-content: center;">
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
             <img class="padded-image" src="{{ image }}" alt="{{ text }}">
             <h1>{{ text }}</h1>
         </div>
