@@ -162,3 +162,10 @@ def register():
 
     session["user_id"] = db.execute("SELECT id FROM users WHERE username = ?", username)[0]["id"]
     return redirect("/")
+
+@app.route("/stats", methods=["GET", "POST"])
+def stats():
+    """Display all users stats"""
+
+    rows = db.execute("SELECT username, time, num_rows FROM users ORDER BY num_rows DESC")
+    return render_template("stats.html", rows=rows,)
