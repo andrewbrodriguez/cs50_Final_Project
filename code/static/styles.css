@@ -1,41 +1,36 @@
-.navbar-brand
-{
+.navbar-brand{
     font-size: xx-large;
     color: navy;
     font-weight: bold;
+    font-family: cursive;
 }
 
-.btn
-{
+.btn{
     color: gainsboro;
     background-color: navy;
 }
 
-.btn:hover
-{
+.btn:hover{
     color: darkgoldenrod;
     background-color: lavender;
 }
 
-.page
-{
+.page{
     margin-bottom: 20px;
     line-height: 1.5;
     font-family: 'Times New Roman', Times, serif;
     font-size: medium;
 }
 
-.img_container img 
-{ 
+.img_container img { 
     padding: 20px; 
 }
-.padded-image
-{
+
+.padded-image{
     padding-right: 20px;
 }
 
-.loading img
-{
+.loading img{
     width: 50%;
 }
 
@@ -49,6 +44,7 @@ table th,
 table td {
     padding: 0.75rem;
     vertical-align: middle;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 tbody tr:nth-of-type(odd) {
