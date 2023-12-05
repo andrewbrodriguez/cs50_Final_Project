@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Results
+    Apology
 {% endblock %}
 
 {% block main %}
      {% for image, text in data %}
-     <div style="display: flex; justify-content: center;">
-          <img class="padded-image" src="{{ image }}" alt="Generated Image Here">
-          <div>{{ text | default('Your Story Here') }}</div>
-     </div>
-     {% endfor %}
+        <div style="display: flex; justify-content: center;">
+            <img class="padded-image" src="{{ image }}" alt="{{ text }}">
+            <h1>{{ text }}</h1>
+        </div>
+    {% endfor %}
 {% endblock %}

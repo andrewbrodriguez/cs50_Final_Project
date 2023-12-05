@@ -1,5 +1,6 @@
 from image_gen import create_img
 from prompt_gen import make_prompts
+import json
 
 def ingest(text):
     counter = 0
@@ -14,6 +15,11 @@ def ingest(text):
             blocks.append(block)
             block = ""
             counter = 0
+
+    json_filename = 'blocks.json'
+    
+    with open(json_filename, 'w') as json_file:
+        json.dump(blocks, json_file, indent=2)
     return blocks
 
 
@@ -21,16 +27,6 @@ def run(story):
     ingested = ingest(story)
 
     prompts = make_prompts(ingested)
-
-    text_prompts = ""
-
-    for prompt in prompts:
-        text_prompts += prompt 
-        text_prompts += "\n\n"
-
-    with open('prompts.txt', 'w') as f:
-        f.write(text_prompts)
-
 
     for prompt in prompts:
         create_img(prompt)

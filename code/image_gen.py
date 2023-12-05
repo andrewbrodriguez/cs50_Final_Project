@@ -16,7 +16,7 @@ def create_img(prompt):
 
         key = data["dalle"]
         openai.api_key = key
-        output_directory = "images"
+        output_directory = "static/images"
 
         promptNumber = prompt[0]
         prompt = prompt[1:]
