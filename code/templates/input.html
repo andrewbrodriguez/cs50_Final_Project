@@ -5,17 +5,17 @@
 {% endblock %}
 
 {% block main %}
-    <form action ="/input" method="post">
+    <form action="/input" method="post">
         <div class="page">
-            <label for="input">Short Story Here</label>
-            <input type="text" id="input" name="input">
+            <label for="story">Enter your short story here:</label><br>
+            <textarea id="input" name="input" wrap="soft"></textarea>
         </div>
         <div>
             <button class="btn" type="submit">Submit</button>
         </div>
     </form>
     <div class="loading">
-        <div class="page"> Enjoy Rick's company while you wait for you picture book to load! Or feel free to bounce your creative visions off of him (he's a good listener).</div>
+        <div class="page"> Enjoy Rick's company while you wait for your picture book to load! Or feel free to bounce your creative visions off of him (he's a good listener).</div>
         <img id="rick" src="/static/rickroll.gif">
-   </div>
+    </div>
 {% endblock %}

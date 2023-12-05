@@ -43,7 +43,7 @@ def input():
     if request.method == "POST":
         # Send story to backend
         story = str(request.form.get("input"))
-        if len(story) < 100 or len(story)>5000:
+        if len(story) < 100 or len(story) > 5000:
             return render_template("apology.html", message="Please enter a story over 100 characters in length, and under 5000 characters in length!")
         
         run(story)
@@ -77,8 +77,6 @@ def results():
         image_text_pairing = ("/static/images/" + file, blocks[counter])
         data.append(image_text_pairing)
         counter +=1
-
-
 
     return render_template("results.html", data=data)
 
