@@ -1,5 +1,4 @@
-// Duck told me this was a good idea to handle errors
-'use strict'; 
+'use strict';
 var loadingDiv = document.querySelector('.loading');
 var progressBar = document.getElementById('progress-bar');
 document.querySelector('form').addEventListener('submit', function(event)
@@ -11,18 +10,18 @@ document.querySelector('form').addEventListener('submit', function(event)
     document.querySelector('#progress-bar').style.display = 'block';
     // Update the progress bar
     var width = 0;
-    var interval = setInterval(function() 
+    var interval = setInterval(function()
     {
-        if (width >= 100) 
+        if (width >= 100)
         {
             clearInterval(interval);
             // Hide the loading screen
             loadingDiv.style.display = 'none';
-        } 
-        else 
+        }
+        else
         {
-            width++; 
-            progressBar.style.width = width + '%'; 
+            width++;
+            progressBar.style.width = width + '%';
         }
     }, 100);
 });
