@@ -45,3 +45,7 @@ table td {
     padding: 0.75rem;
     vertical-align: middle;
 }
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgba(100, 208, 255, 0.221)
+}
