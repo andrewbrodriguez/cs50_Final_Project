@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+     {% for image, text in data %}
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <img class="padded-image" src="{{ image }}" alt="{{ text }}">
+            <h1 style = "font-family: cursive">{{ text }}</h1>
+        </div>
+    {% endfor %}
+{% endblock %}

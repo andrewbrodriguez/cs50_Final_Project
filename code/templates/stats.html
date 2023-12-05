@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    User Leaderboard
+{% endblock %}
+
+{% block main %}
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Time Registered</th>
+            <th>Number of Stories Viewed</th>
+        </tr>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.username }}</td>
+                <td>{{ row.time }}</td>
+                <td>{{ row.num_runs }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
