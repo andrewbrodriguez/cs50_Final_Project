@@ -6,9 +6,9 @@ document.querySelector('form').addEventListener('submit', function(event)
 {
     event.preventDefault();
     // Show the loading screen
-    document.querySelector('.loading img').style.display = 'block';
-    document.querySelector('.loading #progress-container').style.display = 'block';
-    document.querySelector('.loading #progress-bar').style.display = 'block';
+    document.querySelector('#rick').style.display = 'block';
+    document.querySelector('#progress-container').style.display = 'block';
+    document.querySelector('#progress-bar').style.display = 'block';
     // Update the progress bar
     var width = 0;
     var interval = setInterval(function() 
