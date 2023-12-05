@@ -16,7 +16,6 @@ def make_prompts(blocks):
 				"Your goal is to describe the following paragraph such that a painter can make an image in its likness. You must use descriptive words. Make sure that the wording of the prompt is not violent, or rude, or sinister. The wording of the prompt must adhere to the OpenAI Dalle2 input prompt regulations. Your response must be less than 1 sentences in length. Here is the paragraph: "} ] 
 
 	while True: 
-		print("msg 1")
 
 		messages.append( 
 			{"role": "user", "content": blocks[0]}, 
@@ -33,7 +32,6 @@ def make_prompts(blocks):
 			break
 
 		blocks.pop(0)
-		print("Prompt " + str(prompt_count) + " done!")
 	
 
 	return prompts
