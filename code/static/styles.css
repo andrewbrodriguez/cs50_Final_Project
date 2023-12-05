@@ -4,16 +4,19 @@
     color: navy;
     font-weight: bold;
 }
+
 .btn
 {
     color: gainsboro;
     background-color: navy;
 }
+
 .btn:hover
 {
     color: darkgoldenrod;
     background-color: lavender;
 }
+
 .page
 {
     margin-bottom: 20px;
@@ -21,6 +24,7 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: medium;
 }
+
 .img_container img 
 { 
     padding: 20px; 
@@ -29,6 +33,7 @@
 {
     padding-right: 20px;
 }
+
 .loading img
 {
     width: 50%;
