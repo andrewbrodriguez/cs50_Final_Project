@@ -7,7 +7,7 @@ from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import login_required, apology
+from helpers import login_required
 from main import run
 
 # Configure app
@@ -48,7 +48,7 @@ def input():
 
 
         if len(story) < 100:
-            return apology("You must enter a story! It must be over 100 characters in length!")
+            return render_template("apology.html", message="You must provide your username!")
         
         # Redirect user to results page
         return redirect("/results")
