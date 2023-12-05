@@ -4,10 +4,15 @@ import json
 from math import floor
 
 def ingest(text):
+    
+    sentences = 0
 
-    length = len(text)
+    for c in text:
+        if c == "." or c == "!" or c == "?":
+            sentences +=1
 
-    block_size = int(length/6)
+
+    block_size = int(sentences/6)
 
 
     counter = 0
@@ -15,7 +20,8 @@ def ingest(text):
     blocks = []
     for c in text:
         block += c
-        counter += 1
+        if c == "." or c == "!" or c == "?":
+            counter += 1
         if counter > block_size:
             blocks.append(block)
             block = ""
