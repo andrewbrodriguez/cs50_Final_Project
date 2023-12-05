@@ -6,7 +6,7 @@
 
 {% block main %}
     <form action ="/input" method="post">
-        <div>
+        <div class="page">
             <label for="input">Short Story Here</label>
             <input type="text" id="input" name="input" min="1">
         </div>
@@ -14,4 +14,11 @@
             <button class="btn" type="submit">Submit</button>
         </div>
     </form>
+    <div class="loading">
+        <img src="/static/rickroll.gif">
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+   </div>
+   <script src="loading.js"></script>
 {% endblock %}
