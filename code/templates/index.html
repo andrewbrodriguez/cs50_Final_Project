@@ -1,3 +1,4 @@
+<!-- This is our site's homepage -->
 {% extends "layout.html" %}
 
 {% block title %}
@@ -5,10 +6,12 @@
 {% endblock %}
 
 {% block main %}
+    <!-- Title of Site -->
    <h1 style="color: navy; font-family: cursive;">Welcome to <u>BAM's AI Picture Book</u></h1>
    <div class="img_container">
+        <!-- This shows the Open AI logo, as we are using our API's from there -->
         <img src="/static/open_ai.png" alt="Open AI Logo", width = "450", height = "275">
    </div>
-   <!-- PUT OUR DESCRIPTION HERE -->
+   <!-- Below is the description of our page for the user -->
    <div class="page">When you register for our site, you will be able to write or paste a short story into our site's input box! Our site will take chunks of several sentences from your text, inputting them into ChatGPT via an API. The AI will then convert your these blocks into a one-sentence block, which will be inputted into the DALL·E, which will use the generated prompts to generate images about your story! We hope you enjoy our site!</div>
 {% endblock %}

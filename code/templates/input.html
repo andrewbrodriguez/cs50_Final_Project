@@ -1,3 +1,4 @@
+<!-- This is the page where the user inputs their story -->
 {% extends "layout.html" %}
 
 {% block title %}
@@ -5,16 +6,20 @@
 {% endblock %}
 
 {% block main %}
+    <!-- Where the user puts in the story, using post method to get the storybook results-->
     <form action="/input" method="post">
         <div class="page">
             <label for="story">Enter your short story here:</label><br>
+            <!-- This input box type allows the user to change the dimensions of the textbox by dragging it-->
             <textarea id="input" name="input" wrap="soft"></textarea>
         </div>
         <div>
+            <!-- Submit button for the story -->
             <button class="btn" type="submit">Submit</button>
         </div>
     </form>
     <div class="loading">
+        <!-- Allow the user to enjoy the company of Rick as they wait for their results! -->
         <div class="page"> Enjoy Rick's company while you wait for your picture book to load! Or feel free to bounce your creative visions off of him (he's a good listener).</div>
         <img id="rick" src="/static/rickroll.gif">
     </div>

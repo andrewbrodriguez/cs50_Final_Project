@@ -1,3 +1,4 @@
+<!-- This is the page users go to in order to register -->
 {% extends "layout.html" %}
 
 {% block title %}
@@ -5,16 +6,23 @@
 {% endblock %}
 
 {% block main %}
+    <!-- We use the post method for our registraion, this utilizes bootstrap-->
     <form action="/register" method="post">
         <div class="mb-3">
             <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
         </div>
+        <!-- This specifies to the user the password requirements -->
+        <div id="info">
+            Passwords must contain at least one number and one special character
+        </div>
+        <!-- Password & Password confirmation below-->
         <div class="mb-3">
             <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
         </div>
         <div class="mb-3">
             <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirm Password" type="password">
         </div>
-        <button class="btn btn-primary" type="submit">Register</button>
+        <!-- Button to send through registration here-->
+        <button class="btn" type="submit">Register</button>
     </form>
 {% endblock %}

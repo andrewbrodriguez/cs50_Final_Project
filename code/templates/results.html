@@ -1,11 +1,14 @@
+<!-- This page gives the user their story results -->
 {% extends "layout.html" %}
 
 {% block title %}
-    Apology
+    Results
 {% endblock %}
 
 {% block main %}
+    <!-- Uses Jinja to display list of images-->
      {% for image, text in data %}
+        <!-- This displays the image and text side-by-side-->
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
             <img class="padded-image" src="{{ image }}" alt="{{ text }}">
             <h1 style = "font-family: cursive">{{ text }}</h1>

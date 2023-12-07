@@ -1,3 +1,4 @@
+<!-- This page displays a user leaderboard that we track by accounts-->
 {% extends "layout.html" %}
 
 {% block title %}
@@ -5,12 +6,15 @@
 {% endblock %}
 
 {% block main %}
+    <!-- Table displays leaderboard of # of stories viewed -->
     <table>
+        <!-- This row is our header row-->
         <tr>
             <th>Username</th>
             <th>Time Registered</th>
             <th>Number of Stories Viewed</th>
         </tr>
+        <!-- We iterate through the users and the information we keep track of via their accounds for our leaderboard-->
         {% for row in rows %}
             <tr>
                 <td>{{ row.username }}</td>
