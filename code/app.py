@@ -88,7 +88,7 @@ def results():
     # Create a counter for our loop
     counter = 0
 
-    #Loop through each block
+    # Loop through each block
     for block in blocks:
 
         # Create a tuple for the path and block
@@ -189,6 +189,7 @@ def register():
     return redirect("/")
 
 @app.route("/stats", methods=["GET", "POST"])
+@login_required
 def stats():
     """Display all users stats"""
 
