@@ -59,26 +59,36 @@ def input():
 @login_required
 def results():
     """Show images that result from story input"""
-
+    # File path list for the images files
     file_paths = []
+    # Save all file paths in images
     for files in os.walk("static/images"):
         for file_name in files:
             file_paths.append(file_name)
+    # The paths are the file paths at the second position (just the list of images)
     paths = file_paths[2]
 
+    # Sor the paths so we have them order 1->5
     sorted_images = sorted(paths)
-
+    # Open our blocks json with our blocks
     with open('blocks.json', 'r') as json_file:
         blocks = json.load(json_file)
 
-
+    # Create a data list of tuples for the results page to load
     data = []
+    # Create a counter for our loop
     counter = 0
+
+    #Loop through each block
     for block in blocks:
+        # Create a tuple for the path and block
         image_text_pairing = ("/static/images/" + sorted_images[counter], block)
+        # Append this to data
         data.append(image_text_pairing)
+        # Iterate counter
         counter +=1
 
+    # Render results with data
     return render_template("results.html", data=data)
 
 @app.route("/login", methods=["GET", "POST"])
