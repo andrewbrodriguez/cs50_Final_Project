@@ -1,21 +1,21 @@
-.navbar-brand{
+.navbar-brand {
     font-size: xx-large;
     color: navy;
     font-weight: bold;
     font-family: cursive;
 }
 
-.btn{
+.btn {
     color: gainsboro;
     background-color: navy;
 }
 
-.btn:hover{
+.btn:hover {
     color: darkgoldenrod;
     background-color: lavender;
 }
 
-.page{
+.page {
     margin-bottom: 20px;
     line-height: 1.5;
     font-family: 'Times New Roman', Times, serif;
@@ -26,11 +26,11 @@
     padding: 20px; 
 }
 
-.padded-image{
+.padded-image {
     padding-right: 20px;
 }
 
-.loading img{
+.loading img {
     width: 50%;
 }
 
@@ -51,14 +51,14 @@ tbody tr:nth-of-type(odd) {
     background-color: rgba(100, 208, 255, 0.221)
 }
 
-#info{
+#info {
     font-size: x-small;
     color: lightgrey;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.story_blocks{
+.story_blocks {
     font-family: cursive; 
     width: 512px; 
     height: 512px; 
