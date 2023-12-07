@@ -58,10 +58,9 @@ tbody tr:nth-of-type(odd) {
     margin-bottom: 10px;
 }
 
-#story_blocks{
+.story_blocks{
     font-family: cursive; 
     width: 512px; 
-    height: 512 px; 
-    overflow: auto;
-    text-overflow: ellipsis;
+    height: 512px; 
+    overflow: scroll;
 }
