@@ -13,7 +13,7 @@ def ingest(text):
         if c == "." or c == "!" or c == "?":
             sentences +=1
     # Set the block size to one fifth of the story
-    block_size = int(sentences/5)
+    block_size = int(sentences/10)
 
     # Create a new for loop to save each block
     counter = 0

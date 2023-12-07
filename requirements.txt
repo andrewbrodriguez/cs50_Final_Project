@@ -3,6 +3,6 @@ flask
 flask_session
 werkzeug.security
 functools
-openai
+openai version == 0.28
 requests
 json
