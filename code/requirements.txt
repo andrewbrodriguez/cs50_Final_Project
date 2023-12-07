@@ -1,0 +1,8 @@
+cs50 
+flask
+flask_session
+werkzeug.security
+functools
+openai
+requests
+json
