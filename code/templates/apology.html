@@ -1,3 +1,4 @@
+<!-- This is presented when we throw an error! -->
 {% extends "layout.html" %}
 
 {% block title %}
@@ -6,8 +7,10 @@
 
 {% block main %}
     <div class="page">
+        <!-- This is the gif presented when an Error occurs -->
         <img src="/static/whistle.gif" alt="Error Image" style="width: 800 px;"> 
     </div>
+    <!-- Below is the message that tells the user the type of error that occurred -->
     <div class="page" style="color: purple; font-size: large;">
         {% if message %}
             {{ message }}

@@ -50,3 +50,10 @@ table td {
 tbody tr:nth-of-type(odd) {
     background-color: rgba(100, 208, 255, 0.221)
 }
+
+#info{
+    font-size: x-small;
+    color: lightgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
