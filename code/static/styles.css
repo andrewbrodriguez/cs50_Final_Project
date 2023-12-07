@@ -57,3 +57,10 @@ tbody tr:nth-of-type(odd) {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#story_blocks{
+    font-family: cursive; 
+    width: 512px; 
+    height: 512 px; 
+    overflow: scroll;
+}
