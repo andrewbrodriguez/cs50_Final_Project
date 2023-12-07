@@ -1,6 +1,6 @@
 # BAM's AI Picture Book
 
-Our program converts an inputted story into a set of 10 images using the DALL·E and Chat GPT API. For a quick tour of our project, please view this video!
+Our program converts an inputted story into a set of 10 images using the DALL·E and Chat GPT API. For a quick tour of our project, please view this video! https://www.youtube.com/watch?v=1T8JAx2Mwiw 
 
 ## Installation
 
