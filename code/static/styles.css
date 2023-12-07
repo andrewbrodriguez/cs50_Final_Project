@@ -62,5 +62,6 @@ tbody tr:nth-of-type(odd) {
     font-family: cursive; 
     width: 512px; 
     height: 512 px; 
-    overflow: scroll;
+    overflow: auto;
+    text-overflow: ellipsis;
 }
