@@ -38,8 +38,6 @@ def make_prompts(blocks):
 
 		# Save the reply
 		reply = chat.choices[0].message.content 
-		#
-		print("Prompt " + str(prompt_count) + " done!")
 		# Increase the number of prompts created
 		prompt_count+=1
 		# Append to our prompts list
