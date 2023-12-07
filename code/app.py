@@ -43,8 +43,8 @@ def input():
     if request.method == "POST":
         # Send story to backend
         story = str(request.form.get("input"))
-        if len(story) < 100 or len(story) > 5000:
-            return render_template("apology.html", message="Please enter a story over 100 characters in length, and under 5000 characters in length!")
+        if len(story) < 100 or len(story) > 7500:
+            return render_template("apology.html", message="Please enter a story over 100 characters in length, and under 7500 characters in length!")
         
         run(story)
         
@@ -64,8 +64,8 @@ def results():
     for files in os.walk("static/images"):
         for file_name in files:
             file_paths.append(file_name)
-    file_paths = file_paths[2]
-    file_paths.sort(key = str)
+    paths = file_paths[2]
+    paths.sort(key = str)
 
     with open('blocks.json', 'r') as json_file:
         blocks = json.load(json_file)
@@ -73,8 +73,8 @@ def results():
 
     data = []
     counter = 0
-    for file in file_paths:
-        image_text_pairing = ("/static/images/" + file, blocks[counter])
+    for block in blocks:
+        image_text_pairing = ("/static/images/" + paths[counter], block)
         data.append(image_text_pairing)
         counter +=1
 

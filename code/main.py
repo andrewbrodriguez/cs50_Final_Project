@@ -12,7 +12,7 @@ def ingest(text):
             sentences +=1
 
 
-    block_size = int(sentences/10)
+    block_size = int(sentences/6)
 
 
     counter = 0
@@ -42,5 +42,10 @@ def run(story):
 
     prompts = make_prompts(ingested)
 
+    print(len(prompts))
+    
+    counter = 0
     for prompt in prompts:
+        print("Image " + str(counter ) + " started!")
         create_img(prompt)
+        counter+=1
