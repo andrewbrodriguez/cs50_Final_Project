@@ -41,11 +41,15 @@ def input():
     """Input story text to be converted"""
 
     if request.method == "POST":
+
         # Send story to backend
         story = str(request.form.get("input"))
+
+        # Story must be 100-10000 characters, otherwise error
         if len(story) < 100 or len(story) > 10000:
             return render_template("apology.html", message="Please enter a story over 100 characters in length, and under 10000 characters in length!")
         
+        # Generate the images and update user stats
         run(story)
         
         db.execute("UPDATE users SET num_runs = num_runs + 1 WHERE id = :user_id", user_id=session["user_id"])
@@ -59,32 +63,40 @@ def input():
 @login_required
 def results():
     """Show images that result from story input"""
+
     # File path list for the images files
     file_paths = []
+
     # Save all file paths in images
     for files in os.walk("static/images"):
         for file_name in files:
             file_paths.append(file_name)
+
     # The paths are the file paths at the second position (just the list of images)
     paths = file_paths[2]
 
-    # Sor the paths so we have them order 1->5
+    # Sort the paths so we have them order 1->5
     sorted_images = sorted(paths)
+
     # Open our blocks json with our blocks
     with open('blocks.json', 'r') as json_file:
         blocks = json.load(json_file)
 
     # Create a data list of tuples for the results page to load
     data = []
+
     # Create a counter for our loop
     counter = 0
 
     #Loop through each block
     for block in blocks:
+
         # Create a tuple for the path and block
         image_text_pairing = ("/static/images/" + sorted_images[counter], block)
+
         # Append this to data
         data.append(image_text_pairing)
+
         # Iterate counter
         counter +=1
 
@@ -100,6 +112,7 @@ def login():
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
+
         # Ensure username was submitted
         if not request.form.get("username"):
             return render_template("apology.html", message="You must provide your username!")
@@ -141,16 +154,17 @@ def register():
     """Register user"""
 
     if request.method == "POST":
+
+        # Save user inputs as variables
         username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
-
 
         # Ensure username was submitted and doesn't exist already
         if not username:
             return render_template("apology.html", message="You must provide your username!")
             
-        # Ensure password has one number and one special character
+        # Ensure password has one number and one special character and is the same as the confirmation
         if not re.search("[0-9]", password) or not re.search("[!@#$%^&*()]", password):
             return render_template("apology.html", message="Your password must have at least one number and one special character!")
 
@@ -160,7 +174,7 @@ def register():
         # Insert the new user into the database
         hsh = generate_password_hash(password)
 
-        # Save user data, including time registered
+        # Save user data, including time registered unless username already exists
         try:
             db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)", username=username, hash=hsh)
 
@@ -169,7 +183,8 @@ def register():
 
     else:
         return render_template("register.html")
-
+    
+    # Session using user id
     session["user_id"] = db.execute("SELECT id FROM users WHERE username = ?", username)[0]["id"]
     return redirect("/")
 
@@ -177,5 +192,6 @@ def register():
 def stats():
     """Display all users stats"""
 
+    # Render user stats page with user data
     rows = db.execute("SELECT username, time, num_runs FROM users ORDER BY num_runs DESC")
     return render_template("stats.html", rows=rows,)
