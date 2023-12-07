@@ -1,4 +1,4 @@
-# Error handling
+# Import packages needed
 import json
 import os
 import openai 
@@ -6,8 +6,9 @@ import requests
 import shutil
 
 
-
+# Again we use a function so we can import this into another file later
 def create_img(prompt):
+    # We track the number of prompts and the number 
     promptNumber = prompt[0]
     prompt = prompt[1:]
 
@@ -41,7 +42,7 @@ def create_img(prompt):
         link = data[0]
         link = link["url"]
         image_data = requests.get(link).content
-        image_path = os.path.join(f'static/images/image_{promptNumber}.png')
+        image_path = os.path.join(f'static/images/{promptNumber}.png')
 
 
         with open(image_path, 'wb') as image_file:
@@ -52,7 +53,7 @@ def create_img(prompt):
     
     except Exception as e:
         # If an error occurs, return an error message or handle it as needed
-        shutil.copy("static/er.png", (f'static/images/image_{promptNumber}.png'))
+        shutil.copy("static/er.png", (f'static/images/{promptNumber}.png'))
         print("THREW AN ERROR")
         return {"error": str(e)}
     

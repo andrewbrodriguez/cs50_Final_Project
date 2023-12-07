@@ -21,7 +21,7 @@ def make_prompts(blocks):
 
 	# This is the prompt for chatGPT feel free to inspect, there are a few interesting points in here
 	messages = [ {"role": "system", "content": 
-				"Your goal is to describe the following paragraph such that a painter can make an image in its likness. You must use descriptive words. Make sure that the wording of the prompt is not violent, or rude, or sinister. Your response must be non violent, and not include any explicit content. Your response may not include any mentions of death, or blood, or loss of life. The wording of the prompt must adhere to the OpenAI Dalle2 input prompt regulations. Your response must be less than 1 sentences in length. Here is the paragraph: "} ] 
+				"Describe the visual sceneary of the following paragraph. Make sure that the wording of the prompt is not violent, or rude, or sinister. Your response may not include any mentions of death, or blood, or loss of life. Your response must be 1 sentence in length. Here is the paragraph: "} ] 
 
 	# Here we loop through all blocks of text provided
 	while True: 
